@@ -44,6 +44,9 @@ jobs:
     name: Deploy for ${{ matrix.targetPlatform }}
     needs: [ set-matrix, buildForAllSupportedPlatforms ]
     uses: wisestump/fgj24/.github/workflows/deploy-platform.yml@main
+    with: 
+      unityPlatform: ${{ matrix.array.unityPlatform }}
+      deployToDedicatedRemote: ${{ matrix.array.deployToDedicatedRemote }}
     strategy:
       fail-fast: false
       matrix:
