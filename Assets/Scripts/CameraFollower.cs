@@ -14,12 +14,17 @@ class CameraFollower : MonoBehaviour
 
     public float Speed = 0.9f;
 
+    public static CameraFollower Instance { get; private set; }
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     private void Start()
     {
-        if (mainCamera)
-        {
-            cameraPos = mainCamera.transform.position;
-        }
+        mainCamera = Camera.main;
+        cameraPos = mainCamera.transform.position;
     }
 
     private void Update()
