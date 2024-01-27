@@ -1,8 +1,13 @@
+using System;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+class Player : MonoBehaviour
 {
     public static Player Instance { get; private set; }
+
+    public event Action<Panel> OnPanelChange;
+
+    public Panel CurrentPanel { get; set; }
 
     private void Awake()
     {
