@@ -18,6 +18,8 @@ on:
         required: true
       SSH_USER:
         required: true
+      HOST:
+        required: true
 
 env:
   ITCH_USERNAME: tapiiri
