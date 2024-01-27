@@ -1,4 +1,4 @@
-name: Build the Unity game on a given platform
+name: Deploy the Unity game to a given platform
 
 on:
   workflow_call:
@@ -30,13 +30,13 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/download-artifact@v4
         with:
-          name: Build-${{ input.unityPlatform }}
-          path: build/${{ input.unityPlatform }}
+          name: Build-${{ inputs.unityPlatform }}
+          path: build/${{ inputs.unityPlatform }}
       - name: Copy folder content recursively to remote
         uses: garygrossgarten/github-action-scp@release
-        if: ${{ input.deployToDedicatedRemote }}
+        if: ${{ inputs.deployToDedicatedRemote }}
         with:
-          local: build/${{ input.unityPlatform }}
+          local: build/${{ inputs.unityPlatform }}
           remote: /home4/rxbpnwgs/public_html/legang/
           host: ${{ secrets.HOST }}
           privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
