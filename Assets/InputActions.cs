@@ -2,9 +2,17 @@
 
 public class InputActions : MonoBehaviour
 {
-    public int Move { get; private set; }
+    public static InputActions Instance { get; private set; }
 
+    public int Move { get; private set; }
     public bool IsJumpActive { get; private set; }
+    public bool IsRestartActive { get; private set; }
+
+    private void Awake()
+    {
+        Debug.Assert(Instance == null);
+        Instance = this;
+    }
 
     private void Update()
     {
@@ -19,5 +27,6 @@ public class InputActions : MonoBehaviour
         }
          
         IsJumpActive = Input.GetKeyDown(KeyCode.Space);
+        IsRestartActive = Input.GetKeyDown(KeyCode.R);
     }
 }
