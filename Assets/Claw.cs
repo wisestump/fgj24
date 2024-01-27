@@ -23,7 +23,12 @@ public class Claw : MonoBehaviour
     float stopMovingTime = 0f;
 
     public float AnimationLength = 2;
+
+    public float MaxStep = 0.3f;
+    public float Overshoot = 0.1f;
     float maxPlayerX;
+
+    float playerPosX;
     // Start is called before the \first frame update
     void Start()
     {
@@ -50,6 +55,7 @@ public class Claw : MonoBehaviour
             if (timeSinceLastAttack > AttackInterval)
             {
                 isAttacking = true;
+                playerPosX = player.transform.position.x;
                 timeSinceLastAttack = 0;
                 startXPos = transform.position.x;
                 stopMovingTime = movementCounter;
@@ -61,8 +67,8 @@ public class Claw : MonoBehaviour
             
             movementCounter += Time.deltaTime;
             var ratio = movementCounter / AnimationLength;
-            var minX = Mathf.Max(startXPos, bounds.min.x, player.transform.position.x + PlayerOffsetX);
-            var maxX = Mathf.Min(bounds.max.x, player.transform.position.x);
+            var minX = Mathf.Max(startXPos, bounds.min.x, playerPosX + PlayerOffsetX);
+            var maxX = Mathf.Min(bounds.max.x, playerPosX + Overshoot);
             var range = maxX - minX;
             
             goalPosition = new Vector3(minX + GrabAnimation.Evaluate(ratio) * range, transform.position.y, transform.position.z);
@@ -74,9 +80,9 @@ public class Claw : MonoBehaviour
 
         }
         var direction = (goalPosition - transform.position) * 0.9f;
-        if(direction.magnitude > 1)
+        if(direction.magnitude > MaxStep)
         {
-            direction = direction / direction.magnitude;
+            direction = MaxStep * direction / direction.magnitude;
         }
         transform.position += direction;
             
