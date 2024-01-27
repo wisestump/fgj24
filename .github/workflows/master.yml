@@ -36,7 +36,7 @@ jobs:
         uses: garygrossgarten/github-action-scp@release
         with:
           local: build/${{ matrix.targetPlatform }}
-          remote: /home/alqio/www-data/projects/
+          remote: /home4/rxbpnwgs/public_html/legang/
           host: ${{ secrets.HOST }}
           privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
           username: ${{ secrets.SSH_USER }}
