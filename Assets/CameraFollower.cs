@@ -7,6 +7,8 @@ class CameraFollower : MonoBehaviour
 
     private Vector3 cameraPos;
 
+    public Panel RestrictingPanel;
+
     private void Start()
     {
         if (mainCamera)
@@ -20,7 +22,7 @@ class CameraFollower : MonoBehaviour
         // Camera follow
         if (mainCamera)
         {
-            mainCamera.transform.position = new Vector3(Player.transform.position.x, cameraPos.y, cameraPos.z);
+            mainCamera.transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y, cameraPos.z);
         }
     }
 }

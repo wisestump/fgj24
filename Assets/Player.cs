@@ -18,6 +18,14 @@ public class Player : MonoBehaviour
     BoxCollider2D mainCollider;
     Transform t;
 
+    public static Player Instance { get; private set; }
+
+    private void Awake()
+    {
+        Debug.Assert(Instance == null);
+        Instance = this;
+    }
+
     // Use this for initialization
     void Start()
     {
