@@ -10,8 +10,8 @@ public class Movement : MonoBehaviour
     public Transform RightEyeFix;
     public Transform LeftArmFix;
     public Transform RightArmFix;
+    public Animator PlayerAnimator;
     //private AnimationScript anim;
-    public InputActions InputActions;
 
     [Space]
     [Header("Stats")]
@@ -71,12 +71,14 @@ public class Movement : MonoBehaviour
         //float y = Input.GetAxis("Vertical");
         //float xRaw = Input.GetAxisRaw("Horizontal");
         //float yRaw = Input.GetAxisRaw("Vertical");
-        Vector2 dir = new Vector2(InputActions.Move, 0);
+        Vector2 dir = new Vector2(InputActions.Instance.Move, 0);
         
-        if(InputActions.Move != 0)
+        if(InputActions.Instance.Move != 0)
         {
-            bool swap = Mathf.Sign(BodyTransform.localScale.x) != Mathf.Sign(InputActions.Move);
-            BodyTransform.localScale = new Vector3(Mathf.Abs(BodyTransform.localScale.x) * Mathf.Sign(InputActions.Move),
+            if(!PlayerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Run"))
+                PlayerAnimator.Play("Run");
+            bool swap = Mathf.Sign(BodyTransform.localScale.x) != Mathf.Sign(InputActions.Instance.Move);
+            BodyTransform.localScale = new Vector3(Mathf.Abs(BodyTransform.localScale.x) * Mathf.Sign(InputActions.Instance.Move),
                                     BodyTransform.localScale.y, BodyTransform.localScale.z);
             if (swap)
             {
@@ -84,6 +86,8 @@ public class Movement : MonoBehaviour
                 SwapPositions(LeftEyeFix, RightEyeFix);
             }
         }
+        else if (!PlayerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Stand"))
+            PlayerAnimator.Play("Stand");
 
         Walk(dir);
         //anim.SetHorizontalMovement(x, y, rb.velocity.y);
@@ -135,7 +139,7 @@ public class Movement : MonoBehaviour
         if (!coll.onWall || coll.onGround)
             wallSlide = false;
 
-        if (InputActions.IsJumpActive)
+        if (InputActions.Instance.IsJumpActive)
         {
             //anim.SetTrigger("jump");
 
