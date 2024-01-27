@@ -1046,7 +1046,6 @@ MonoBehaviour:
   FloatRangeRatio: 0.8
   PlayerOffsetX: -9
   PlayerOffsetRangeY: 5
-  AttackInterval: 2
   GrabAnimation:
     serializedVersion: 2
     m_Curve:
@@ -1099,8 +1098,11 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   AnimationLength: 2
-  MaxStep: 0.3
   Overshoot: 0.51
+  MaxStep: 0.3
+  IdleDistance: 0.1
+  IdleWaitInterval: 1
+  MaxAttackYRange: 0.2
 --- !u!58 &599468949
 CircleCollider2D:
   m_ObjectHideFlags: 0

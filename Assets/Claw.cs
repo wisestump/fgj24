@@ -4,28 +4,38 @@ using UnityEngine;
 
 public class Claw : MonoBehaviour
 {
-
+    [Space]
+    [Header("Floating behavior")]
     public float FloatingSpeed = 0.05f;
     public float FloatRangeRatio = 0.8f;
     public float PlayerOffsetX = -1f;
 
     public float PlayerOffsetRangeY = 1f;
+    [Space]
+    [Header("Grabbing animation")]
+    public AnimationCurve GrabAnimation;
+    public float AnimationLength = 2;
+    public float Overshoot = 0.1f;
+    [Space]
+    [Header("General movement")]
+    public float MaxStep = 0.3f;
 
-    public float AttackInterval = 10f;
+    [Space]
+    [Header("Player idling properties")]
+    public float IdleDistance = 0.1f;
+    public float IdleWaitInterval = 10f;
+    public float MaxAttackYRange = 0.2f;
+
+    Vector3 lastPlayerPosition;
     float timeSinceLastAttack = 0f;
-
+    float idleCounter = 0f;
     bool isAttacking = false;
     float movementCounter = 0f;
     Transform transform;
     float startXPos;
-    public AnimationCurve GrabAnimation;
 
     float stopMovingTime = 0f;
 
-    public float AnimationLength = 2;
-
-    public float MaxStep = 0.3f;
-    public float Overshoot = 0.1f;
     float maxPlayerX;
 
     float playerPosX;
@@ -33,8 +43,13 @@ public class Claw : MonoBehaviour
     void Start()
     {
         transform = GetComponent<Transform>();
+        lastPlayerPosition = Player.Instance.transform.position;
+        Player.Instance.OnPanelChange += resetMaxX;
     }
-
+    void resetMaxX(Panel panel)
+    {
+        transform.position = new Vector3(panel.Bounds.min.x, transform.position.y, transform.position.z);
+    }
     // Update is called once per frame
     void Update()
     {
@@ -52,7 +67,16 @@ public class Claw : MonoBehaviour
             float y = center + Mathf.Sin(FloatingSpeed * movementCounter) * range;
             goalPosition = new Vector3(Mathf.Max(transform.position.x, bounds.min.x, player.transform.position.x + PlayerOffsetX), y, transform.position.z);
             timeSinceLastAttack += Time.deltaTime;
-            if (timeSinceLastAttack > AttackInterval)
+            if((lastPlayerPosition - player.transform.position).magnitude < IdleDistance)
+            {
+                idleCounter += Time.deltaTime;
+            }
+            else
+            {
+                idleCounter = 0;
+            }
+
+            if (idleCounter > IdleWaitInterval && Mathf.Abs(player.transform.position.y - transform.position.y) < MaxAttackYRange)
             {
                 isAttacking = true;
                 playerPosX = player.transform.position.x;
@@ -61,6 +85,7 @@ public class Claw : MonoBehaviour
                 stopMovingTime = movementCounter;
                 movementCounter = 0;
             }
+            lastPlayerPosition = player.transform.position;
         }
         else
         {
