@@ -776,11 +776,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adc2d3c90034cad9cb798614f37e4f8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FloatingSpeed: 2
+  FloatingSpeed: 1
   FloatRangeRatio: 0.8
   PlayerOffsetX: -9
   PlayerOffsetRangeY: 5
-  AttackInterval: 1
+  AttackInterval: 2
   GrabAnimation:
     serializedVersion: 2
     m_Curve:
