@@ -39,5 +39,5 @@ jobs:
           remote: /home4/rxbpnwgs/public_html/legang/
           host: ${{ secrets.HOST }}
           privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
+          passphrase: ${{ secrets.PASSWORD }}
           username: ${{ secrets.SSH_USER }}
-          password: ${{ secrets.PASSWORD }}
