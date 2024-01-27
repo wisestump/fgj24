@@ -270,7 +270,7 @@ public class Movement : MonoBehaviour
         rb.velocity = new Vector2(rb.velocity.x, 0);
         rb.velocity += dir * jumpForce;
 
-        particle.Play();
+        //particle.Play();
     }
 
     IEnumerator DisableMovement(float time)
