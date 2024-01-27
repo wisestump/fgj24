@@ -217,7 +217,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 20.48, y: 20.48}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -469,7 +469,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 20.48, y: 20.48}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -553,7 +553,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 20.48, y: 20.48}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -643,7 +643,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 11.78, y: 11.78}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -686,7 +686,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 11.78, y: 11.78}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 11.78, y: 11.78}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -793,7 +793,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 20.48, y: 20.48}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1651,6 +1651,7 @@ MonoBehaviour:
   Multiplier: 0.9
   FixedPoint: {fileID: 6085940568332054938}
   MovingBody: {fileID: 5981017397809322179}
+  minDistance: 1
 --- !u!1001 &1535805536351355828
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1711,6 +1712,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3729116935550532397, guid: da3099169f8e7a99b9da52ae843aa954, type: 3}
+      propertyPath: m_Size.x
+      value: 20.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 3729116935550532397, guid: da3099169f8e7a99b9da52ae843aa954, type: 3}
+      propertyPath: m_Size.y
+      value: 20.48
+      objectReference: {fileID: 0}
     - target: {fileID: 7123090201795473932, guid: da3099169f8e7a99b9da52ae843aa954, type: 3}
       propertyPath: FixedPoint
       value: 
@@ -1722,6 +1731,14 @@ PrefabInstance:
     - target: {fileID: 7123090201795473932, guid: da3099169f8e7a99b9da52ae843aa954, type: 3}
       propertyPath: Multiplier
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8457766438810213263, guid: da3099169f8e7a99b9da52ae843aa954, type: 3}
+      propertyPath: m_Size.x
+      value: 20.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 8457766438810213263, guid: da3099169f8e7a99b9da52ae843aa954, type: 3}
+      propertyPath: m_Size.y
+      value: 20.48
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2414,6 +2431,7 @@ MonoBehaviour:
   Multiplier: 0.9
   FixedPoint: {fileID: 8789409488813097391}
   MovingBody: {fileID: 5981017397809322179}
+  minDistance: 1
 --- !u!1001 &9145598981804889599
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2474,6 +2492,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3729116935550532397, guid: da3099169f8e7a99b9da52ae843aa954, type: 3}
+      propertyPath: m_Size.x
+      value: 20.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 3729116935550532397, guid: da3099169f8e7a99b9da52ae843aa954, type: 3}
+      propertyPath: m_Size.y
+      value: 20.48
+      objectReference: {fileID: 0}
     - target: {fileID: 7123090201795473932, guid: da3099169f8e7a99b9da52ae843aa954, type: 3}
       propertyPath: FixedPoint
       value: 
@@ -2485,6 +2511,14 @@ PrefabInstance:
     - target: {fileID: 7123090201795473932, guid: da3099169f8e7a99b9da52ae843aa954, type: 3}
       propertyPath: Multiplier
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8457766438810213263, guid: da3099169f8e7a99b9da52ae843aa954, type: 3}
+      propertyPath: m_Size.x
+      value: 20.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 8457766438810213263, guid: da3099169f8e7a99b9da52ae843aa954, type: 3}
+      propertyPath: m_Size.y
+      value: 20.48
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
