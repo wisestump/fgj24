@@ -21,12 +21,13 @@ jobs:
           path: Library
           key: Library-${{ matrix.targetPlatform }}
           restore-keys: Library-
-      - uses: game-ci/unity-builder@v2
+      - uses: game-ci/unity-builder@v4
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
-          targetPlatform: ${{ matrix.targetPlatform }}
-          projectPath: ./fgj
+          targetPlatform: WebGL
       - uses: actions/upload-artifact@v2
         with:
           name: Build-${{ matrix.targetPlatform }}
@@ -39,3 +40,4 @@ jobs:
           host: ${{ secrets.HOST }}
           privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
           username: ${{ secrets.SSH_USER }}
+          password: ${{ secrets.PASSWORD }}
