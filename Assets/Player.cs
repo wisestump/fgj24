@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(CapsuleCollider2D))]
+//[RequireComponent(typeof(CapsuleCollider2D))]
 public class Player : MonoBehaviour
 {
     // Move player in 2D space
@@ -11,13 +9,13 @@ public class Player : MonoBehaviour
     public float jumpHeight = 6.5f;
     public float gravityScale = 1.5f;
     public Camera mainCamera;
+    public InputActions InputActions;
 
     bool facingRight = true;
     float moveDirection = 0;
     bool isGrounded = false;
-    Vector3 cameraPos;
     Rigidbody2D r2d;
-    CapsuleCollider2D mainCollider;
+    BoxCollider2D mainCollider;
     Transform t;
 
     // Use this for initialization
@@ -25,25 +23,21 @@ public class Player : MonoBehaviour
     {
         t = transform;
         r2d = GetComponent<Rigidbody2D>();
-        mainCollider = GetComponent<CapsuleCollider2D>();
+        mainCollider = GetComponent<BoxCollider2D>();
         r2d.freezeRotation = true;
         r2d.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
         r2d.gravityScale = gravityScale;
         facingRight = t.localScale.x > 0;
 
-        if (mainCamera)
-        {
-            cameraPos = mainCamera.transform.position;
-        }
     }
 
     // Update is called once per frame
     void Update()
     {
         // Movement controls
-        if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)) && (isGrounded || Mathf.Abs(r2d.velocity.x) > 0.01f))
+        if (InputActions.Move != 0 && (isGrounded || Mathf.Abs(r2d.velocity.x) > 0.01f))
         {
-            moveDirection = Input.GetKey(KeyCode.A) ? -1 : 1;
+            moveDirection = InputActions.Move;
         }
         else
         {
@@ -69,15 +63,9 @@ public class Player : MonoBehaviour
         }
 
         // Jumping
-        if (Input.GetKeyDown(KeyCode.W) && isGrounded)
+        if (InputActions.IsJumpActive && isGrounded)
         {
             r2d.velocity = new Vector2(r2d.velocity.x, jumpHeight);
-        }
-
-        // Camera follow
-        if (mainCamera)
-        {
-            mainCamera.transform.position = new Vector3(t.position.x, cameraPos.y, cameraPos.z);
         }
     }
 
@@ -89,18 +77,10 @@ public class Player : MonoBehaviour
         // Check if player is grounded
         Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheckPos, colliderRadius);
         //Check if any of the overlapping colliders are not player collider, if so, set isGrounded to true
-        isGrounded = false;
-        if (colliders.Length > 0)
-        {
-            for (int i = 0; i < colliders.Length; i++)
-            {
-                if (colliders[i] != mainCollider)
-                {
-                    isGrounded = true;
-                    break;
-                }
-            }
-        }
+        isGrounded = DoesIntersect(colliders);
+
+        Vector3 rightWallCheck = colliderBounds.max + new Vector3(colliderBounds.size.x * 0.5f, colliderRadius * 0.9f, 0);
+        var touchingRightWall = DoesIntersect(Physics2D.OverlapCircleAll(rightWallCheck, colliderRadius));
 
         // Apply movement velocity
         r2d.velocity = new Vector2((moveDirection) * maxSpeed, r2d.velocity.y);
@@ -108,5 +88,21 @@ public class Player : MonoBehaviour
         // Simple debug
         Debug.DrawLine(groundCheckPos, groundCheckPos - new Vector3(0, colliderRadius, 0), isGrounded ? Color.green : Color.red);
         Debug.DrawLine(groundCheckPos, groundCheckPos - new Vector3(colliderRadius, 0, 0), isGrounded ? Color.green : Color.red);
+    }
+
+    private bool DoesIntersect(Collider2D[] colliders)
+    {
+        if (colliders.Length > 0)
+        {
+            for (int i = 0; i < colliders.Length; i++)
+            {
+                if (colliders[i] != mainCollider)
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 }
