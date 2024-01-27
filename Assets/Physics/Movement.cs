@@ -4,7 +4,6 @@ using System.Collections;
 public class Movement : MonoBehaviour
 {
     private Collision coll;
-    [HideInInspector]
     public Rigidbody2D rb;
     //private AnimationScript anim;
     public InputActions InputActions;
@@ -45,7 +44,7 @@ public class Movement : MonoBehaviour
     void Start()
     {
         coll = GetComponent<Collision>();
-        rb = GetComponent<Rigidbody2D>();
+        //rb = GetComponent<Rigidbody2D>();
         //anim = GetComponentInChildren<AnimationScript>();
     }
 
