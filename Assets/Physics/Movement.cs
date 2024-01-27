@@ -5,6 +5,11 @@ public class Movement : MonoBehaviour
 {
     private Collision coll;
     public Rigidbody2D rb;
+    public Transform BodyTransform;
+    public Transform LeftEyeFix;
+    public Transform RightEyeFix;
+    public Transform LeftArmFix;
+    public Transform RightArmFix;
     //private AnimationScript anim;
     public InputActions InputActions;
 
@@ -39,13 +44,23 @@ public class Movement : MonoBehaviour
     public ParticleSystem wallJumpParticle;
     public ParticleSystem slideParticle;
 
+    Transform transform;
 
     // Start is called before the first frame update
     void Start()
     {
         coll = GetComponent<Collision>();
+        transform = GetComponent<Transform>();
         //rb = GetComponent<Rigidbody2D>();
         //anim = GetComponentInChildren<AnimationScript>();
+    }
+
+
+    void SwapPositions(Transform t1, Transform t2)
+    {
+        var p1 = t1.position;
+        t1.position = t2.position;
+        t2.position = p1;
     }
 
     // Update is called once per frame
@@ -57,6 +72,18 @@ public class Movement : MonoBehaviour
         //float xRaw = Input.GetAxisRaw("Horizontal");
         //float yRaw = Input.GetAxisRaw("Vertical");
         Vector2 dir = new Vector2(InputActions.Move, 0);
+        
+        if(InputActions.Move != 0)
+        {
+            bool swap = Mathf.Sign(BodyTransform.localScale.x) != Mathf.Sign(InputActions.Move);
+            BodyTransform.localScale = new Vector3(Mathf.Abs(BodyTransform.localScale.x) * Mathf.Sign(InputActions.Move),
+                                    BodyTransform.localScale.y, BodyTransform.localScale.z);
+            if (swap)
+            {
+                SwapPositions(LeftArmFix, RightArmFix);
+                SwapPositions(LeftEyeFix, RightEyeFix);
+            }
+        }
 
         Walk(dir);
         //anim.SetHorizontalMovement(x, y, rb.velocity.y);
@@ -140,16 +167,16 @@ public class Movement : MonoBehaviour
         if (wallGrab || wallSlide || !canMove)
             return;
 
-        //if (dir.x > 0)
-        //{
+        // if (dir.x > 0)
+        // {
         //    side = 1;
         //    anim.Flip(side);
-        //}
-        //if (dir.x < 0)
-        //{
+        // }
+        // if (dir.x < 0)
+        // {
         //    side = -1;
         //    anim.Flip(side);
-        //}
+        // }
     }
 
     void GroundTouch()
