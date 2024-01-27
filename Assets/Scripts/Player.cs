@@ -8,11 +8,13 @@ class Player : MonoBehaviour
     public event Action<Panel> OnPanelChange;
 
     public Panel CurrentPanel { get; private set; }
+    public Movement Movement { get; private set; }
 
     private void Awake()
     {
         Debug.Assert(Instance == null);
         Instance = this;
+        Movement = GetComponent<Movement>();
     }
 
     public void SetPanel(Panel panel)
