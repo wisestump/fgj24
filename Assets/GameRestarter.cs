@@ -3,20 +3,25 @@
 class GameRestarter : MonoBehaviour
 {
     public InputActions InputActions;
-    public ChoiceAction Action;
+    public ChoiceAction[] Actions;
     public Endscreen Endscreen;
 
     private void Start()
     {
-        Action.Perform(Player.Instance);
+        PerformActions();
     }
 
     private void Update()
     {
         if (InputActions.IsRestartActive == false)
             return;
-
-        Action.Perform(Player.Instance);
+        PerformActions();
         Endscreen.Hide();
+    }
+
+    private void PerformActions()
+    {
+        foreach (var a in Actions)
+            a.Perform(Player.Instance);
     }
 }
