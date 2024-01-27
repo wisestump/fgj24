@@ -30,6 +30,7 @@ class GameRestarter : MonoBehaviour
         CameraFollower.Instance.FollowPlayer = true;
         Player.Instance.gameObject.GetComponent<Movement>().enabled = true;
         Player.Instance.gameObject.GetComponent<Movement>().rb.isKinematic = false;
+        Player.Instance.gameObject.GetComponent<Movement>().DisableJetpack();
     }
 
     private void PerformActions()
