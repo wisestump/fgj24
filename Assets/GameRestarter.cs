@@ -5,9 +5,9 @@ class GameRestarter : MonoBehaviour
     public InputActions InputActions;
     public ChoiceAction Action;
 
-    private void Awake()
+    private void Start()
     {
-        DontDestroyOnLoad(this);
+        Action.Perform(Player.Instance);
     }
 
     private void Update()
