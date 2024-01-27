@@ -1,0 +1,51 @@
+name: Build the Unity game on a given platform
+
+on:
+  workflow_call:
+    inputs:
+      unityPlatform:
+        required: true
+        type: string
+      deployToDedicatedRemote:
+        required: false
+        type: boolean
+    secrets:
+      BUTLER_API_KEY:
+        required: true
+      SSH_PRIVATE_KEY:
+        required: true
+      PASSWORD:
+        required: true
+      SSH_USER:
+        required: true
+
+env:
+  ITCH_USERNAME: tapiiri
+  ITCH_GAME_ID: clawful-escape
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/download-artifact@v4
+        with:
+          name: Build-${{ input.unityPlatform }}
+          path: build/${{ input.unityPlatform }}
+      - name: Copy folder content recursively to remote
+        uses: garygrossgarten/github-action-scp@release
+        if: ${{ input.deployToDedicatedRemote }}
+        with:
+          local: build/${{ input.unityPlatform }}
+          remote: /home4/rxbpnwgs/public_html/legang/
+          host: ${{ secrets.HOST }}
+          privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
+          passphrase: ${{ secrets.PASSWORD }}
+          username: ${{ secrets.SSH_USER }}
+      - uses: KikimoraGames/itch-publish@v0.0.3
+        with:
+          butlerApiKey: ${{secrets.BUTLER_API_KEY}}
+          gameData: ./build/
+          itchUsername: ${{env.ITCH_USERNAME}}
+          itchGameId: ${{ env.ITCH_GAME_ID }}
+          buildChannel: ${{ matrix.arrays.itchChannel }}
