@@ -3,11 +3,16 @@
 class Choice : MonoBehaviour
 {
     public BoxCollider2D BoxCollider2D;
-    public ChoiceAction ChoiceAction;
+    [HideInInspector] public ChoiceAction ChoiceAction;
+
+    private void Start()
+    {
+        this.ChoiceAction = GetComponent<ChoiceAction>();
+    }
 
     private void Update()
     {
-        BoxCollider2D.OverlapPoint(Player.Instance.transform.position);
-        //ChoiceAction.    
+        if (BoxCollider2D.OverlapPoint(Player.Instance.transform.position))
+            ChoiceAction.Perform(Player.Instance);
     }
 }
