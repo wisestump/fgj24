@@ -14,6 +14,8 @@ class CameraFollower : MonoBehaviour
 
     public float Speed = 0.9f;
 
+    public bool FollowPlayer = true;
+
     public static CameraFollower Instance { get; private set; }
 
     private void Awake()
@@ -32,16 +34,19 @@ class CameraFollower : MonoBehaviour
         // Camera follow
         if (mainCamera)
         {
-            var newPos = new Vector3(Player.transform.position.x, Player.transform.position.y, cameraPos.z);
-            var v = newPos - mainCamera.transform.position;
-            if (v.sqrMagnitude > 1f)
-                isLatched = false;
-            if (isLatched)
-                mainCamera.transform.position = newPos;
-            else
+            if (FollowPlayer)
             {
-                mainCamera.transform.position += v * Speed;
-                isLatched = v.sqrMagnitude < LatchMagnitude;
+                var newPos = new Vector3(Player.transform.position.x, Player.transform.position.y, cameraPos.z);
+                var v = newPos - mainCamera.transform.position;
+                if (v.sqrMagnitude > 1f)
+                    isLatched = false;
+                if (isLatched)
+                    mainCamera.transform.position = newPos;
+                else
+                {
+                    mainCamera.transform.position += v * Speed;
+                    isLatched = v.sqrMagnitude < LatchMagnitude;
+                }
             }
         }
     }
