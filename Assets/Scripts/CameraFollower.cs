@@ -10,6 +10,10 @@ class CameraFollower : MonoBehaviour
     public Panel RestrictingPanel;
     bool isLatched;
 
+    public float LatchMagnitude = 0.05f;
+
+    public float Speed = 0.9f;
+
     private void Start()
     {
         if (mainCamera)
@@ -31,8 +35,8 @@ class CameraFollower : MonoBehaviour
                 mainCamera.transform.position = newPos;
             else
             {
-                mainCamera.transform.position += v / 50;
-                isLatched = v.sqrMagnitude < 0.05f;
+                mainCamera.transform.position += v * Speed;
+                isLatched = v.sqrMagnitude < LatchMagnitude;
             }
         }
     }
