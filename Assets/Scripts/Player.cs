@@ -27,4 +27,9 @@ class Player : MonoBehaviour
         CurrentPanel = panel;
         OnPanelChange?.Invoke(panel);
     }
+
+    public void EnableJetpack()
+    {
+        Movement.EnableJetpack();
+    }
 }
