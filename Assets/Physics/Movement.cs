@@ -10,6 +10,7 @@ public class Movement : MonoBehaviour
     public Transform RightEyeFix;
     public Transform LeftArmFix;
     public Transform RightArmFix;
+    public Animator PlayerAnimator;
     //private AnimationScript anim;
     public InputActions InputActions;
 
@@ -75,6 +76,8 @@ public class Movement : MonoBehaviour
         
         if(InputActions.Move != 0)
         {
+            if(!PlayerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Run"))
+                PlayerAnimator.Play("Run");
             bool swap = Mathf.Sign(BodyTransform.localScale.x) != Mathf.Sign(InputActions.Move);
             BodyTransform.localScale = new Vector3(Mathf.Abs(BodyTransform.localScale.x) * Mathf.Sign(InputActions.Move),
                                     BodyTransform.localScale.y, BodyTransform.localScale.z);
@@ -84,6 +87,8 @@ public class Movement : MonoBehaviour
                 SwapPositions(LeftEyeFix, RightEyeFix);
             }
         }
+        else if (!PlayerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Stand"))
+            PlayerAnimator.Play("Stand");
 
         Walk(dir);
         //anim.SetHorizontalMovement(x, y, rb.velocity.y);
