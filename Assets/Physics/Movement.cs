@@ -17,10 +17,12 @@ public class Movement : MonoBehaviour
     [Header("Stats")]
     public float speed = 10;
     public float jumpForce = 50;
+    public float jetpackJumpForce = 10;
     public float slideSpeed = 5;
     public float wallJumpLerp = 10;
     public float dashSpeed = 20;
     public float normalGravityScale = 3;
+    public float jetpackGravityScale = 1;
 
     [Space]
     [Header("Booleans")]
@@ -34,6 +36,7 @@ public class Movement : MonoBehaviour
 
     private bool groundTouch;
     private bool hasDashed;
+    private bool jetpackActive;
 
     public int side = 1;
 
@@ -55,6 +58,8 @@ public class Movement : MonoBehaviour
         //anim = GetComponentInChildren<AnimationScript>();
     }
 
+    public void EnableJetpack() => jetpackActive = true;
+    public void DisableJetpack() => jetpackActive = false;
 
     void SwapPositions(Transform t1, Transform t2)
     {
@@ -66,7 +71,7 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.gravityScale = normalGravityScale;
+        rb.gravityScale = jetpackActive ? jetpackGravityScale : normalGravityScale;
         //float x = Input.GetAxis("Horizontal");
         //float y = Input.GetAxis("Vertical");
         //float xRaw = Input.GetAxisRaw("Horizontal");
@@ -298,7 +303,7 @@ public class Movement : MonoBehaviour
         ParticleSystem particle = wall ? wallJumpParticle : jumpParticle;
 
         rb.velocity = new Vector2(rb.velocity.x, 0);
-        rb.velocity += dir * jumpForce;
+        rb.velocity += dir * (jetpackActive ? jetpackJumpForce : jumpForce);
 
         //particle.Play();
     }
