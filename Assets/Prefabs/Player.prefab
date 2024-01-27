@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3331318392542345763}
   - component: {fileID: 1131061770951031566}
   - component: {fileID: 5981017397809322179}
+  - component: {fileID: 3972148934715053796}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -63,7 +64,7 @@ MonoBehaviour:
   slideSpeed: 5
   wallJumpLerp: 10
   dashSpeed: 20
-  normalGravityScale: 5
+  normalGravityScale: 3
   canMove: 1
   wallGrab: 0
   wallJumped: 0
@@ -125,6 +126,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &3972148934715053796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4481887104160479664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88f8ef7f136c0eb3d870b557fe8e478a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4586936023823964855
 GameObject:
   m_ObjectHideFlags: 0
