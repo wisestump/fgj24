@@ -10,17 +10,19 @@ public class Movement : MonoBehaviour
     public Transform RightEyeFix;
     public Transform LeftArmFix;
     public Transform RightArmFix;
+    public Animator PlayerAnimator;
     //private AnimationScript anim;
-    public InputActions InputActions;
 
     [Space]
     [Header("Stats")]
     public float speed = 10;
     public float jumpForce = 50;
+    public float jetpackJumpForce = 10;
     public float slideSpeed = 5;
     public float wallJumpLerp = 10;
     public float dashSpeed = 20;
     public float normalGravityScale = 3;
+    public float jetpackGravityScale = 1;
 
     [Space]
     [Header("Booleans")]
@@ -34,6 +36,7 @@ public class Movement : MonoBehaviour
 
     private bool groundTouch;
     private bool hasDashed;
+    private bool jetpackActive;
 
     public int side = 1;
 
@@ -55,6 +58,8 @@ public class Movement : MonoBehaviour
         //anim = GetComponentInChildren<AnimationScript>();
     }
 
+    public void EnableJetpack() => jetpackActive = true;
+    public void DisableJetpack() => jetpackActive = false;
 
     void SwapPositions(Transform t1, Transform t2)
     {
@@ -66,17 +71,19 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.gravityScale = normalGravityScale;
+        rb.gravityScale = jetpackActive ? jetpackGravityScale : normalGravityScale;
         //float x = Input.GetAxis("Horizontal");
         //float y = Input.GetAxis("Vertical");
         //float xRaw = Input.GetAxisRaw("Horizontal");
         //float yRaw = Input.GetAxisRaw("Vertical");
-        Vector2 dir = new Vector2(InputActions.Move, 0);
+        Vector2 dir = new Vector2(InputActions.Instance.Move, 0);
         
-        if(InputActions.Move != 0)
+        if(InputActions.Instance.Move != 0)
         {
-            bool swap = Mathf.Sign(BodyTransform.localScale.x) != Mathf.Sign(InputActions.Move);
-            BodyTransform.localScale = new Vector3(Mathf.Abs(BodyTransform.localScale.x) * Mathf.Sign(InputActions.Move),
+            if(!PlayerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Run"))
+                PlayerAnimator.Play("Run");
+            bool swap = Mathf.Sign(BodyTransform.localScale.x) != Mathf.Sign(InputActions.Instance.Move);
+            BodyTransform.localScale = new Vector3(Mathf.Abs(BodyTransform.localScale.x) * Mathf.Sign(InputActions.Instance.Move),
                                     BodyTransform.localScale.y, BodyTransform.localScale.z);
             if (swap)
             {
@@ -84,6 +91,8 @@ public class Movement : MonoBehaviour
                 SwapPositions(LeftEyeFix, RightEyeFix);
             }
         }
+        else if (!PlayerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Stand"))
+            PlayerAnimator.Play("Stand");
 
         Walk(dir);
         //anim.SetHorizontalMovement(x, y, rb.velocity.y);
@@ -135,7 +144,7 @@ public class Movement : MonoBehaviour
         if (!coll.onWall || coll.onGround)
             wallSlide = false;
 
-        if (InputActions.IsJumpActive)
+        if (InputActions.Instance.IsJumpActive)
         {
             //anim.SetTrigger("jump");
 
@@ -294,7 +303,7 @@ public class Movement : MonoBehaviour
         ParticleSystem particle = wall ? wallJumpParticle : jumpParticle;
 
         rb.velocity = new Vector2(rb.velocity.x, 0);
-        rb.velocity += dir * jumpForce;
+        rb.velocity += dir * (jetpackActive ? jetpackJumpForce : jumpForce);
 
         //particle.Play();
     }

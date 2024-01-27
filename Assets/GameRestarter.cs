@@ -3,20 +3,39 @@
 class GameRestarter : MonoBehaviour
 {
     public InputActions InputActions;
-    public ChoiceAction Action;
+    public ChoiceAction[] Actions;
     public Endscreen Endscreen;
+
+
+    public static GameRestarter Instance { get; private set; }
 
     private void Start()
     {
-        Action.Perform(Player.Instance);
+        Debug.Assert(Instance == null);
+        Instance = this;
+        PerformActions();
     }
 
     private void Update()
     {
         if (InputActions.IsRestartActive == false)
             return;
+        Restart();
+    }
 
-        Action.Perform(Player.Instance);
+    public void Restart()
+    {
+        PerformActions();
         Endscreen.Hide();
+        CameraFollower.Instance.FollowPlayer = true;
+        Player.Instance.gameObject.GetComponent<Movement>().enabled = true;
+        Player.Instance.gameObject.GetComponent<Movement>().rb.isKinematic = false;
+        Player.Instance.gameObject.GetComponent<Movement>().DisableJetpack();
+    }
+
+    private void PerformActions()
+    {
+        foreach (var a in Actions)
+            a.Perform(Player.Instance);
     }
 }

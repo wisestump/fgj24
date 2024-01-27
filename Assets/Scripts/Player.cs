@@ -17,9 +17,19 @@ class Player : MonoBehaviour
         Movement = GetComponent<Movement>();
     }
 
+    private void Start()
+    {
+        CameraFollower.Instance.Player = gameObject;
+    }
+
     public void SetPanel(Panel panel)
     {
         CurrentPanel = panel;
         OnPanelChange?.Invoke(panel);
+    }
+
+    public void EnableJetpack()
+    {
+        Movement.EnableJetpack();
     }
 }
