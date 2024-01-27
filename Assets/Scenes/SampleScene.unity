@@ -388,6 +388,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 519420031}
   Player: {fileID: 5958762365263192328}
+  RestrictingPanel: {fileID: 0}
 --- !u!1 &715191713
 GameObject:
   m_ObjectHideFlags: 0
@@ -964,11 +965,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7087552343314901618, guid: 8f4fde1bcabe448bca440fe203aeaed1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.5174448
+      value: -3.444
       objectReference: {fileID: 0}
     - target: {fileID: 7087552343314901618, guid: 8f4fde1bcabe448bca440fe203aeaed1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.2961264
+      value: 1.326
       objectReference: {fileID: 0}
     - target: {fileID: 7087552343314901618, guid: 8f4fde1bcabe448bca440fe203aeaed1, type: 3}
       propertyPath: m_LocalPosition.z
