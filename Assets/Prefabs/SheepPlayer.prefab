@@ -59,7 +59,6 @@ MonoBehaviour:
   LeftArmFix: {fileID: 7713077644158196612}
   RightArmFix: {fileID: 4994073079716669205}
   PlayerAnimator: {fileID: 8403826263500646504}
-  InputActions: {fileID: 0}
   speed: 5
   jumpForce: 15
   slideSpeed: 5
@@ -977,19 +976,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1037100453068192115, guid: b6eed1bcf916a6d2496f63dda9ec1d1a, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.3625766
+      value: 0.23322016
       objectReference: {fileID: 0}
     - target: {fileID: 1037100453068192115, guid: b6eed1bcf916a6d2496f63dda9ec1d1a, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.3625766
+      value: 0.23322016
       objectReference: {fileID: 0}
     - target: {fileID: 1037100453068192115, guid: b6eed1bcf916a6d2496f63dda9ec1d1a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.432
+      value: 0.44494
       objectReference: {fileID: 0}
     - target: {fileID: 1037100453068192115, guid: b6eed1bcf916a6d2496f63dda9ec1d1a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.327
+      value: 0.30889
       objectReference: {fileID: 0}
     - target: {fileID: 1037100453068192115, guid: b6eed1bcf916a6d2496f63dda9ec1d1a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1651,6 +1650,7 @@ MonoBehaviour:
   Multiplier: 0.9
   FixedPoint: {fileID: 6085940568332054938}
   MovingBody: {fileID: 5981017397809322179}
+  minDistance: 1
 --- !u!1001 &1535805536351355828
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1751,19 +1751,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1037100453068192115, guid: b6eed1bcf916a6d2496f63dda9ec1d1a, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.38511547
+      value: 0.26526752
       objectReference: {fileID: 0}
     - target: {fileID: 1037100453068192115, guid: b6eed1bcf916a6d2496f63dda9ec1d1a, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.38511547
+      value: 0.26526752
       objectReference: {fileID: 0}
     - target: {fileID: 1037100453068192115, guid: b6eed1bcf916a6d2496f63dda9ec1d1a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.09449137
+      value: -0.082507
       objectReference: {fileID: 0}
     - target: {fileID: 1037100453068192115, guid: b6eed1bcf916a6d2496f63dda9ec1d1a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.21194485
+      value: 0.19517
       objectReference: {fileID: 0}
     - target: {fileID: 1037100453068192115, guid: b6eed1bcf916a6d2496f63dda9ec1d1a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2422,6 +2422,7 @@ MonoBehaviour:
   Multiplier: 0.9
   FixedPoint: {fileID: 8789409488813097391}
   MovingBody: {fileID: 5981017397809322179}
+  minDistance: 1
 --- !u!1001 &9145598981804889599
 PrefabInstance:
   m_ObjectHideFlags: 0
