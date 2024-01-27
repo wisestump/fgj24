@@ -4,6 +4,7 @@ class GameRestarter : MonoBehaviour
 {
     public InputActions InputActions;
     public ChoiceAction Action;
+    public Endscreen Endscreen;
 
     private void Start()
     {
@@ -16,5 +17,6 @@ class GameRestarter : MonoBehaviour
             return;
 
         Action.Perform(Player.Instance);
+        Endscreen.Hide();
     }
 }
