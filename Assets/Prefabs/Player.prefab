@@ -1605,7 +1605,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5113494e2367f0ea0bed3beca75ceee3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Multiplier: 1
+  Multiplier: 2
   FixedPoint: {fileID: 6085940568332054938}
 --- !u!1001 &1535805536351355828
 PrefabInstance:
@@ -2339,7 +2339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5113494e2367f0ea0bed3beca75ceee3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Multiplier: 1
+  Multiplier: 2
   FixedPoint: {fileID: 8789409488813097391}
 --- !u!1001 &9145598981804889599
 PrefabInstance:
