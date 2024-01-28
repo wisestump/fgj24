@@ -360,7 +360,7 @@ public class Movement : MonoBehaviour
         return particleSide;
     }
 
-    public void ResetAnimation()
+    public void SetStandAnimation()
     {
         if (!PlayerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Stand"))
             PlayerAnimator.Play("Stand");

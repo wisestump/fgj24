@@ -26,13 +26,19 @@ class GameRestarter : MonoBehaviour
 
     public void Restart()
     {
+        var player = Player.Instance;
+        if (Player.Instance.HasWon)
+        {
+            player.HasWon = false;
+            player = PlayerSpawner.Instance.SpawnNewPlayer();
+        }
         PerformActions();
         Endscreen.Hide();
         CameraFollower.Instance.FollowPlayer = true;
         SoundManager.Instance.ResetLevel();
-        Player.Instance.gameObject.GetComponent<Movement>().enabled = true;
-        Player.Instance.gameObject.GetComponent<Movement>().rb.isKinematic = false;
-        Player.Instance.gameObject.GetComponent<Movement>().DisableJetpack();
+        player.gameObject.GetComponent<Movement>().enabled = true;
+        player.gameObject.GetComponent<Movement>().rb.isKinematic = false;
+        player.gameObject.GetComponent<Movement>().DisableJetpack();
     }
 
     private void PerformActions()

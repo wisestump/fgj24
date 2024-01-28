@@ -10,6 +10,8 @@ class Player : MonoBehaviour
     public Panel CurrentPanel { get; private set; }
     public Movement Movement { get; private set; }
 
+    public bool HasWon { get; set; }
+
     private void Awake()
     {
         Debug.Assert(Instance == null);
@@ -38,6 +40,6 @@ class Player : MonoBehaviour
         Movement.rb.isKinematic = !value;
         Movement.rb.gravityScale = 0;
         Movement.rb.velocity = Vector2.zero;
-        Movement.ResetAnimation();
+        Movement.SetStandAnimation();
     }
 }
