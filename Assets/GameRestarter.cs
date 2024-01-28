@@ -13,7 +13,8 @@ class GameRestarter : MonoBehaviour
     {
         Debug.Assert(Instance == null);
         Instance = this;
-        PerformActions();
+        PerformActions(Player.Instance);
+        SoundManager.Instance.ResetLevel();
     }
 
     private void Update()
@@ -25,17 +26,24 @@ class GameRestarter : MonoBehaviour
 
     public void Restart()
     {
-        PerformActions();
+        var player = Player.Instance;
+        if (player.HasWon)
+        {
+            Destroy(player.gameObject);
+            player = PlayerSpawner.Instance.SpawnNewPlayer();
+        }
+        PerformActions(player);
         Endscreen.Hide();
         CameraFollower.Instance.FollowPlayer = true;
-        Player.Instance.gameObject.GetComponent<Movement>().enabled = true;
-        Player.Instance.gameObject.GetComponent<Movement>().rb.isKinematic = false;
-        Player.Instance.gameObject.GetComponent<Movement>().DisableJetpack();
+        SoundManager.Instance.ResetLevel();
+        player.gameObject.GetComponent<Movement>().enabled = true;
+        player.gameObject.GetComponent<Movement>().rb.isKinematic = false;
+        player.gameObject.GetComponent<Movement>().DisableJetpack();
     }
 
-    private void PerformActions()
+    private void PerformActions(Player player)
     {
         foreach (var a in Actions)
-            a.Perform(Player.Instance);
+            a.Perform(player);
     }
 }
