@@ -60,7 +60,7 @@ public class Movement : MonoBehaviour
 
     public void EnableJetpack() => jetpackActive = true;
     public void DisableJetpack() => jetpackActive = false;
-
+    
     void SwapPositions(Transform t1, Transform t2)
     {
         var p1 = t1.position;
@@ -358,5 +358,11 @@ public class Movement : MonoBehaviour
     {
         int particleSide = coll.onRightWall ? 1 : -1;
         return particleSide;
+    }
+
+    public void ResetAnimation()
+    {
+        if (!PlayerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Stand"))
+            PlayerAnimator.Play("Stand");
     }
 }

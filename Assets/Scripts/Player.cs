@@ -32,4 +32,12 @@ class Player : MonoBehaviour
     {
         Movement.EnableJetpack();
     }
+    public void SetPhysicsEnabled(bool value)
+    {
+        Movement.enabled = value;
+        Movement.rb.isKinematic = !value;
+        Movement.rb.gravityScale = 0;
+        Movement.rb.velocity = Vector2.zero;
+        Movement.ResetAnimation();
+    }
 }

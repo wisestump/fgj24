@@ -144,7 +144,7 @@ MonoBehaviour:
   PlayerAnimator: {fileID: 8403826263500646504}
   speed: 5
   jumpForce: 15
-  jetpackJumpForce: 10
+  jetpackJumpForce: 40
   slideSpeed: 5
   wallJumpLerp: 10
   dashSpeed: 20
