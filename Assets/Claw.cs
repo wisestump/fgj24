@@ -47,11 +47,17 @@ public class Claw : MonoBehaviour
     bool playerSaved = false;
 
     Animator animator;
+    public static Claw Instance { get; set; }
     // Start is called before the \first frame update
     void Start()
     {
         transform = GetComponent<Transform>();
         animator = GetComponent<Animator>();
+    }
+
+    private void Awake()
+    {
+        Instance = this;
     }
 
 
