@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 
 class GameRestarter : MonoBehaviour
 {
@@ -7,6 +8,7 @@ class GameRestarter : MonoBehaviour
     public Endscreen Endscreen;
 
 
+    public event Action<GameRestarter> OnRestartTriggered;
     public static GameRestarter Instance { get; private set; }
 
     private void Start()
@@ -39,6 +41,7 @@ class GameRestarter : MonoBehaviour
         player.gameObject.GetComponent<Movement>().enabled = true;
         player.gameObject.GetComponent<Movement>().rb.isKinematic = false;
         player.gameObject.GetComponent<Movement>().DisableJetpack();
+        OnRestartTriggered?.Invoke(this);
     }
 
     private void PerformActions(Player player)
