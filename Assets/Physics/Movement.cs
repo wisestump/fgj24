@@ -37,7 +37,7 @@ public class Movement : MonoBehaviour
     private bool groundTouch;
     private bool hasDashed;
     private bool jetpackActive;
-
+    private Vector2 movementVector;
     public int side = 1;
 
     [Space]
@@ -175,7 +175,12 @@ public class Movement : MonoBehaviour
 
         if (wallGrab || wallSlide || !canMove)
             return;
-
+        
+        // Debug.Log(coll.onGround);
+        
+        rb.velocity = movementVector;
+        // rb.MovePosition(rb.position + movementVector);
+        // rb.transform.position = rb.position + movementVector;
         // if (dir.x > 0)
         // {
         //    side = 1;
@@ -187,7 +192,21 @@ public class Movement : MonoBehaviour
         //    anim.Flip(side);
         // }
     }
-
+    void FixedUpdate()
+    {
+        foreach(Collider2D collider in coll.GroundCollisions)
+        {
+            var movingPlatform = collider.gameObject.GetComponent<MovingPlatform>();
+            if (movingPlatform != null)
+            {
+                // movementVector += 100*movingPlatform.velocity;
+                // rb.MovePosition(rb.position + movingPlatform.velocity);
+                rb.transform.position = rb.position + movingPlatform.velocity;
+            }
+        }
+        // Debug.Log(rb.velocity);
+        // rb.velocity = movementVector;
+    }
     void GroundTouch()
     {
         hasDashed = false;
@@ -289,11 +308,11 @@ public class Movement : MonoBehaviour
 
         if (!wallJumped)
         {
-            rb.velocity = new Vector2(dir.x * speed, rb.velocity.y);
+            movementVector = new Vector2(dir.x * speed, rb.velocity.y);
         }
         else
         {
-            rb.velocity = Vector2.Lerp(rb.velocity, (new Vector2(dir.x * speed, rb.velocity.y)), wallJumpLerp * Time.deltaTime);
+            movementVector = Vector2.Lerp(rb.velocity, (new Vector2(dir.x * speed, rb.velocity.y)), wallJumpLerp * Time.deltaTime);
         }
     }
 
@@ -302,8 +321,8 @@ public class Movement : MonoBehaviour
         //slideParticle.transform.parent.localScale = new Vector3(ParticleSide(), 1, 1);
         ParticleSystem particle = wall ? wallJumpParticle : jumpParticle;
 
-        rb.velocity = new Vector2(rb.velocity.x, 0);
-        rb.velocity += dir * (jetpackActive ? jetpackJumpForce : jumpForce);
+        movementVector= new Vector2(rb.velocity.x, 0);
+        movementVector += dir * (jetpackActive ? jetpackJumpForce : jumpForce);
 
         //particle.Play();
     }
