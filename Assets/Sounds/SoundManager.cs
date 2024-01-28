@@ -10,6 +10,13 @@ class SoundManager : MonoBehaviour
     public AudioSource Melody_Ground;
     public AudioSource Melody_Sewers;
 
+    public static SoundManager Instance { get; private set; }
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     public void ResetLevel()
     {
         Drums.mute = false;

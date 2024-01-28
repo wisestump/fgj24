@@ -44,6 +44,8 @@ public class Claw : MonoBehaviour
 
     bool lateInitComplete = false;
 
+    bool playerSaved = false;
+
     Animator animator;
     // Start is called before the \first frame update
     void Start()
@@ -59,13 +61,19 @@ public class Claw : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if(playerSaved)
+            return;
         if (other.gameObject.transform.parent.gameObject == Player.Instance.gameObject)
         {
             caughtPlayer = true;
-            CameraFollower.Instance.FollowPlayer = false;
-            Player.Instance.gameObject.GetComponent<Movement>().enabled = false;
+            if (Player.Instance.Use1UP())
+                playerSaved = true;
+            else
+            {            
+                CameraFollower.Instance.FollowPlayer = false;
+                Player.Instance.SetPhysicsEnabled(false);
+            }
             startXPos = transform.position.x;
-            Player.Instance.gameObject.GetComponent<Movement>().rb.isKinematic = true;
             movementCounter = 0f;
         }
     }
@@ -74,6 +82,7 @@ public class Claw : MonoBehaviour
     {
         caughtPlayer = false;
         isAttacking = false;
+        playerSaved = false;
     }
     // Update is called once per frame
     void Update()
@@ -160,9 +169,11 @@ public class Claw : MonoBehaviour
             var currentPositionX = startXPos + Mathf.Pow(ratio, 1.5f) * (endPositionX - startXPos);
             goalPosition = new Vector3(currentPositionX, transform.position.y, transform.position.z);
 
+            
             if(movementCounter > AnimationLength)
             {
-                GameRestarter.Instance.Restart();
+                if(!playerSaved)
+                    GameRestarter.Instance.Restart();
                 Restart();
             }
         }
@@ -172,10 +183,9 @@ public class Claw : MonoBehaviour
             direction = MaxStep * direction / direction.magnitude;
         }
         transform.position += direction;
-        if(caughtPlayer)
+        if(caughtPlayer && !playerSaved)
         {
             direction = (transform.position - player.transform.position) * 0.9f;
-
             player.transform.position += direction;
         }
             

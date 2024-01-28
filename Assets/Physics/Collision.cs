@@ -7,9 +7,11 @@ public class Collision : MonoBehaviour
 
     [Header("Layers")]
     public LayerMask groundLayer;
+    public LayerMask slowLayer;
     public ContactFilter2D contactFilter;
     [Space]
 
+    public bool isSlowed;
     public bool onGround;
     public bool onWall;
     public bool onRightWall;
@@ -35,6 +37,7 @@ public class Collision : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        isSlowed = Physics2D.OverlapCircle((Vector2)transform.position + bottomOffset, collisionRadius, slowLayer);
         onGround = Physics2D.OverlapCircle((Vector2)transform.position + bottomOffset, collisionRadius, contactFilter, GroundCollisions) > 0;
         onWall = Physics2D.OverlapCircle((Vector2)transform.position + rightOffset, collisionRadius, groundLayer)
             || Physics2D.OverlapCircle((Vector2)transform.position + leftOffset, collisionRadius, groundLayer);

@@ -2,10 +2,22 @@
 
 class PlayerSpawner : MonoBehaviour
 {
-    public GameObject[] Skins;
+    public Player[] Skins;
+
+    public static PlayerSpawner Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
-        Instantiate(Skins[Random.Range(0, Skins.Length)]);
+        SpawnNewPlayer();
+    }
+
+    public Player SpawnNewPlayer()
+    {
+        return Instantiate(Skins[Random.Range(0, Skins.Length)]);
     }
 }
