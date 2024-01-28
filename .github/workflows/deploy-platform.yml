@@ -42,7 +42,7 @@ jobs:
         if: ${{ inputs.deployToDedicatedRemote }}
         with:
           local: build/${{ inputs.unityPlatform }}
-          remote: /home4/rxbpnwgs/public_html/legang/
+          remote: /home4/rxbpnwgs/public_html/clawful-escape/
           host: ${{ secrets.HOST }}
           privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
           passphrase: ${{ secrets.PASSWORD }}
