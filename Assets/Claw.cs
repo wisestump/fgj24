@@ -7,7 +7,7 @@ public class Claw : MonoBehaviour
     [Space]
     [Header("Floating behavior")]
     public float FloatingSpeed = 0.05f;
-    public float FloatRangeRatio = 0.8f;
+    public float FloatRangeRatio = 0.9f;
     public float PlayerOffsetX = -1f;
 
     public float PlayerOffsetRangeY = 1f;
@@ -43,11 +43,13 @@ public class Claw : MonoBehaviour
     bool caughtPlayer = false;
 
     bool lateInitComplete = false;
+
+    Animator animator;
     // Start is called before the \first frame update
     void Start()
     {
         transform = GetComponent<Transform>();
-        
+        animator = GetComponent<Animator>();
     }
 
 
@@ -88,6 +90,8 @@ public class Claw : MonoBehaviour
         {
             if (!isAttacking)
             {
+                if(!animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+                    animator.Play("Idle");
                 // float y = bounds.center.y + FloatingSpeed * Mathf.Sin(Time.time) * bounds.extents.y * player.CurrentPanel.Size.y * FloatRangeRatio;
                 var minLimit = Mathf.Max(bounds.center.y - bounds.extents.y * FloatRangeRatio, player.transform.position.y - PlayerOffsetRangeY);
                 var maxLimit = Mathf.Min(bounds.center.y + bounds.extents.y * FloatRangeRatio, player.transform.position.y + PlayerOffsetRangeY);
@@ -122,6 +126,18 @@ public class Claw : MonoBehaviour
                 
                 movementCounter += Time.deltaTime;
                 var ratio = movementCounter / AnimationLength;
+
+                if(ratio < 0.5)
+                {
+                    if(!animator.GetCurrentAnimatorStateInfo(0).IsName("Open"))
+                        animator.Play("Open");
+                }
+                else
+                {
+                    if(!animator.GetCurrentAnimatorStateInfo(0).IsName("Close"))
+                        animator.Play("Close");
+                }
+
                 var minX = Mathf.Max(startXPos, bounds.min.x, playerPosX + PlayerOffsetX);
                 var maxX = Mathf.Min(bounds.max.x, playerPosX + Overshoot);
                 var range = maxX - minX;
@@ -136,6 +152,8 @@ public class Claw : MonoBehaviour
         }
         else
         {
+            if(!animator.GetCurrentAnimatorStateInfo(0).IsName("Close"))
+                animator.Play("Close");
             movementCounter += Time.deltaTime;
             var ratio = movementCounter / AnimationLength;
             var endPositionX = CameraFollower.Instance.mainCamera.transform.position.x - 15f;
