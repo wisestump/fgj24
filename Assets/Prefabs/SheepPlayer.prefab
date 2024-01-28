@@ -63,16 +63,20 @@ MonoBehaviour:
   speed: 5
   jumpForce: 15
   jetpackJumpForce: 40
+  swimmingJumpForce: 5
   slideSpeed: 5
   wallJumpLerp: 10
   dashSpeed: 20
   normalGravityScale: 3
   jetpackGravityScale: 1
+  swimmingGravityScale: 1
+  slowMultiplier: 0.5
   canMove: 1
   wallGrab: 0
   wallJumped: 0
   wallSlide: 1
   isDashing: 0
+  isSwimming: 0
   side: 1
   dashParticle: {fileID: 0}
   jumpParticle: {fileID: 0}
@@ -93,6 +97,9 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  slowLayer:
+    serializedVersion: 2
+    m_Bits: 0
   contactFilter:
     useTriggers: 0
     useLayerMask: 1
@@ -107,6 +114,7 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
+  isSlowed: 0
   onGround: 0
   onWall: 0
   onRightWall: 0

@@ -18,11 +18,14 @@ public class Movement : MonoBehaviour
     public float speed = 10;
     public float jumpForce = 50;
     public float jetpackJumpForce = 10;
+    public float swimmingJumpForce = 10;
     public float slideSpeed = 5;
     public float wallJumpLerp = 10;
     public float dashSpeed = 20;
     public float normalGravityScale = 3;
     public float jetpackGravityScale = 1;
+    public float swimmingGravityScale = 1;
+    public float slowMultiplier = 0.5f;
 
     [Space]
     [Header("Booleans")]
@@ -31,6 +34,7 @@ public class Movement : MonoBehaviour
     public bool wallJumped;
     public bool wallSlide;
     public bool isDashing;
+    public bool isSwimming;
 
     [Space]
 
@@ -72,6 +76,8 @@ public class Movement : MonoBehaviour
     void Update()
     {
         rb.gravityScale = jetpackActive ? jetpackGravityScale : normalGravityScale;
+        if (isSwimming)
+            rb.gravityScale = swimmingGravityScale;
         //float x = Input.GetAxis("Horizontal");
         //float y = Input.GetAxis("Vertical");
         //float xRaw = Input.GetAxisRaw("Horizontal");
@@ -144,14 +150,18 @@ public class Movement : MonoBehaviour
         if (!coll.onWall || coll.onGround)
             wallSlide = false;
 
-        if (InputActions.Instance.IsJumpActive)
+        if (InputActions.Instance.IsJumpActive && !isSwimming)
         {
             //anim.SetTrigger("jump");
-
+           
             if (coll.onGround)
                 Jump(Vector2.up, false);
             //if (coll.onWall && !coll.onGround)
             //    WallJump();
+        }
+        if (InputActions.Instance.IsJumpHeld && isSwimming)
+        {
+            Jump(Vector2.up, false);
         }
 
         //if (Input.GetButtonDown("Fire1") && !hasDashed)
@@ -314,6 +324,8 @@ public class Movement : MonoBehaviour
         {
             movementVector = Vector2.Lerp(rb.velocity, (new Vector2(dir.x * speed, rb.velocity.y)), wallJumpLerp * Time.deltaTime);
         }
+        if (coll.isSlowed)
+            movementVector *= slowMultiplier;
     }
 
     private void Jump(Vector2 dir, bool wall)
@@ -321,8 +333,11 @@ public class Movement : MonoBehaviour
         //slideParticle.transform.parent.localScale = new Vector3(ParticleSide(), 1, 1);
         ParticleSystem particle = wall ? wallJumpParticle : jumpParticle;
 
-        movementVector= new Vector2(rb.velocity.x, 0);
-        movementVector += dir * (jetpackActive ? jetpackJumpForce : jumpForce);
+        movementVector= new Vector2(movementVector.x, 0);
+        var force = (jetpackActive ? jetpackJumpForce : jumpForce);
+        if (isSwimming)
+            force = swimmingJumpForce;
+        movementVector += dir * force;
         if(jetpackActive)
             GetComponent<Player>().Jetpack.Fire();
         //particle.Play();
