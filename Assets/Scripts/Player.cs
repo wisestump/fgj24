@@ -20,7 +20,6 @@ class Player : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Assert(Instance == null);
         Instance = this;
         Movement = GetComponent<Movement>();
     }
