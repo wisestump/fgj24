@@ -21,10 +21,10 @@ jobs:
   build:
     runs-on: ${{ inputs.runs-on }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          lfs: true
+          lfs: false
       - uses: actions/cache@v2
         with:
           path: Library
