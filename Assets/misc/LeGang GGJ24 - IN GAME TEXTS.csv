@@ -1,0 +1,38 @@
+Game story,Plushie is trying to escape from a Claw Machine. Player have to outsmart the Claw and various obstacles in a battle of wits and puns,,,,
+,,,,,
+MAP,CHARACTER,TEXT ON SCREEN,TRIGGER WHEN,NOTES FOR DESIGNER,REFERENCE
+PROLOGUE,,Plushie is one of the few remaining stuffed toys left in the Claw Cave.,Player presses START,Using either VO or dialogue box or both,
+,,"No one wants to leave a good friend hanging around. But one by one, Plushie's friends have clawed their way out.",,,
+,,Plushie decides on a great escape.,,,
+ARCADE,Claw,Stop moving and I'll claw you back into my arms.,Level starts,,
+,Plushie,Watch me outpun you!,,,
+SPACE 1,Claw,All suited up with no space to go.,Player chooses Choice #1,,
+,Plushie,"That's a one star pun, Claw. Now, get outer my space.",,,
+SEWER 1,Claw,Ready for a poop joke?,Player chooses Choice #2,,
+,Plushie,"Nope, they stink",,,
+SPACE 2,Plushie,These puns are pointing us in the right direction.,Player chooses Choice #3,,Space/Finger
+,Claw,Do you want me to give you a hand?,,,
+,Plushie,Not a meteor chance.,,,
+GROUND 1,Claw,"Don't be a buzzkill, Plushie. Let's swat it out!",Player chooses Choice #4,,Ground/Fly Swatter
+,Plushie,"Don't worry, I'm just here to wing it",,,
+SEWER 2,Claw,Your fart knocked the wind out of me.,Player chooses Choice #5,,Sewer/Fart
+,Plushie,Don't mind me. I'm just blowing off some steam,,,
+,Claw,I'm flushed with embarrassment.,,,
+SPACE 3,Claw,I’m running out of space puns.,Player chooses Choice #6,Leads to Ending #1,Space/Space/Space
+,Plushie,"Well, you need to planet better.",,,
+GROUND 2,Claw,"You are not buzzworthy at all, Plushie",Player chooses Choice #7,Leads to Ending #2,"Space/Space/Ground, Space/Ground/Ground"
+,Plushie,That's because I bring it down to Earth... with a splat.,,,
+GROUND 3,Plushie,"Oh dear, there is a lot of ground to cover",Player chooses Choice #8,Leads to Ending #3,Sewer/Ground/Ground
+,Claw,"Don’t trust the stairs, they are always up to something!",,,
+,Plushie,I'm not taking any chance for granite.,,,
+SEWER 3,,,Player chooses Choice #9,Leads to Ending #4,Sewer/Sewer/Sewer
+,,,,,
+ENDING 1,,Congratulations! You have won a Constellation prize.,Player successfully reached the end of SPACE 3,Using either VO or dialogue box or both,
+,,A one-way trip to the Black Hole.,,,
+ENDING 2,,,Player successfully reached the end of GROUND 2,Using either VO or dialogue box or both,
+,,,,,
+ENDING 3,,Congratulations! You have arrived at Rock Bottom.,Player successfully reached the end of GROUND 3,Using either VO or dialogue box or both,
+,,It takes a boulder attitude to be here.,,,
+ENDING 4,,Congratulations! You are now a member of an elite group Sewer-side Squad that has reached the bottom of the Earth.,Player successfully reached the end of SEWER 3,Using either VO or dialogue box or both,
+,,It's a real “poop”ular spot.,,,
+GAME OVER,Claw,I always claw my way to victory.,Player fail state achieved,Game over screen,
