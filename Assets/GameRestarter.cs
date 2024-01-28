@@ -14,6 +14,7 @@ class GameRestarter : MonoBehaviour
         Debug.Assert(Instance == null);
         Instance = this;
         PerformActions();
+        SoundManager.Instance.ResetLevel();
     }
 
     private void Update()
@@ -28,6 +29,7 @@ class GameRestarter : MonoBehaviour
         PerformActions();
         Endscreen.Hide();
         CameraFollower.Instance.FollowPlayer = true;
+        SoundManager.Instance.ResetLevel();
         Player.Instance.gameObject.GetComponent<Movement>().enabled = true;
         Player.Instance.gameObject.GetComponent<Movement>().rb.isKinematic = false;
         Player.Instance.gameObject.GetComponent<Movement>().DisableJetpack();
