@@ -36,7 +36,7 @@ jobs:
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
-          unityPlatform: WebGL
+          targetPlatform: ${{ inputs.unityPlatform }}
       - uses: actions/upload-artifact@v4
         with:
           name: Build-${{ inputs.unityPlatform }}
