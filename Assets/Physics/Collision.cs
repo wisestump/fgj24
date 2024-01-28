@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic; 
 
 public class Collision : MonoBehaviour
 {
 
     [Header("Layers")]
     public LayerMask groundLayer;
-
+    public ContactFilter2D contactFilter;
     [Space]
 
     public bool onGround;
@@ -22,6 +24,8 @@ public class Collision : MonoBehaviour
     public Vector2 bottomOffset, rightOffset, leftOffset;
     private Color debugCollisionColor = Color.red;
 
+    [HideInInspector]
+    public List<Collider2D> GroundCollisions;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +35,7 @@ public class Collision : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        onGround = Physics2D.OverlapCircle((Vector2)transform.position + bottomOffset, collisionRadius, groundLayer);
+        onGround = Physics2D.OverlapCircle((Vector2)transform.position + bottomOffset, collisionRadius, contactFilter, GroundCollisions) > 0;
         onWall = Physics2D.OverlapCircle((Vector2)transform.position + rightOffset, collisionRadius, groundLayer)
             || Physics2D.OverlapCircle((Vector2)transform.position + leftOffset, collisionRadius, groundLayer);
 
