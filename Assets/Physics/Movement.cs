@@ -323,7 +323,8 @@ public class Movement : MonoBehaviour
 
         movementVector= new Vector2(rb.velocity.x, 0);
         movementVector += dir * (jetpackActive ? jetpackJumpForce : jumpForce);
-
+        if(jetpackActive)
+            GetComponent<Player>().Jetpack.Fire();
         //particle.Play();
     }
 
