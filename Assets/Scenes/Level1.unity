@@ -4224,9 +4224,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Skins:
-  - {fileID: 4481887104160479664, guid: f36d7c42b9f3fd5c4b6b126a81a12861, type: 3}
-  - {fileID: 4481887104160479664, guid: 8f4fde1bcabe448bca440fe203aeaed1, type: 3}
-  - {fileID: 4481887104160479664, guid: 21e5b58b80e9de95eb7b8269c4ffade6, type: 3}
+  - {fileID: 3972148934715053796, guid: f36d7c42b9f3fd5c4b6b126a81a12861, type: 3}
+  - {fileID: 3972148934715053796, guid: 8f4fde1bcabe448bca440fe203aeaed1, type: 3}
+  - {fileID: 3972148934715053796, guid: 21e5b58b80e9de95eb7b8269c4ffade6, type: 3}
 --- !u!4 &1251252516 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8373501625669464524, guid: 005352dc83accd34e97d92c1eb16e063, type: 3}
