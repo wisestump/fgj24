@@ -7,11 +7,11 @@ on:
 env:
   DISTRIBUTIONS: |
     [
-      { unityPlatform: "StandaloneWindows64", itchChannel: "win", runs-on: "windows-2022" },
-      { unityPlatform: "StandaloneOSX", itchChannel: "mac", runs-on: "macos-latest" },
-      { unityPlatform: "StandaloneLinux64", itchChannel: "linux", runs-on: "ubuntu-latest"},
-      { unityPlatform: "Android", itchChannel: "android", runs-on: "ubuntu-latest"},
-      { unityPlatform: "WebGL", itchChannel: "webgl", runs-on: "ubuntu-latest", "deployToDedicatedRemote": true },
+      { unityPlatform: "StandaloneWindows64", itchChannel: "win", "runs-on": "windows-2022" },
+      { unityPlatform: "StandaloneOSX", itchChannel: "mac", "runs-on": "macos-latest" },
+      { unityPlatform: "StandaloneLinux64", itchChannel: "linux", "runs-on": "ubuntu-latest"},
+      { unityPlatform: "Android", itchChannel: "android", "runs-on": "ubuntu-latest"},
+      { unityPlatform: "WebGL", itchChannel: "webgl", "runs-on": "ubuntu-latest", "deployToDedicatedRemote": true },
     ]
 
 jobs:
