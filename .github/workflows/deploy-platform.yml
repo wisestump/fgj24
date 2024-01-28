@@ -49,7 +49,7 @@ jobs:
           username: ${{ secrets.SSH_USER }}
       - uses: KikimoraGames/itch-publish@v0.0.3
         with:
-          butlerAPIKey: ${{secrets.BUTLER_API_KEY}}
+          butlerApiKey: ${{secrets.BUTLER_API_KEY}}
           gameData: ./build/
           itchUsername: ${{env.ITCH_USERNAME}}
           itchGameId: ${{ env.ITCH_GAME_ID }}
