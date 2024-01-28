@@ -39,6 +39,7 @@ class GameRestarter : MonoBehaviour
         player.gameObject.GetComponent<Movement>().enabled = true;
         player.gameObject.GetComponent<Movement>().rb.isKinematic = false;
         player.gameObject.GetComponent<Movement>().DisableJetpack();
+        Claw.Instance.gameObject.SetActive(true);
     }
 
     private void PerformActions(Player player)

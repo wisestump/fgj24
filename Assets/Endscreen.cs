@@ -2,8 +2,10 @@
 
 class Endscreen : MonoBehaviour
 {
+    public static Endscreen Instance { get; set; }
     private void Awake()
     {
+        Instance = this;
         Hide();
     }
 
