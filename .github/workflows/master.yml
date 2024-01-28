@@ -26,7 +26,7 @@ jobs:
           DISTRIBUTIONS=${DISTRIBUTIONS//[$'\t\r\n']}
           echo "matrix=${DISTRIBUTIONS}" >> $GITHUB_OUTPUT
   buildForAllSupportedPlatforms:
-    name: Build for ${{ matrix.targetPlatform }}
+    name: Build for ${{ matrix.unityPlatform }}
     needs: [ set-matrix ]
     uses: wisestump/fgj24/.github/workflows/build-platform.yml@main
     strategy:
@@ -41,11 +41,12 @@ jobs:
       UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
       UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
   deployAllPlatforms:
-    name: Deploy for ${{ matrix.targetPlatform }}
+    name: Deploy for ${{ matrix.unityPlatform }}
     needs: [ set-matrix, buildForAllSupportedPlatforms ]
     uses: wisestump/fgj24/.github/workflows/deploy-platform.yml@main
     with: 
       unityPlatform: ${{ matrix.array.unityPlatform }}
+      itchChannel: ${{ matrix.array.itchChannel }}
       deployToDedicatedRemote: ${{ matrix.array.deployToDedicatedRemote }}
     strategy:
       fail-fast: false
