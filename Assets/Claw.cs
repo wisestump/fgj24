@@ -31,7 +31,7 @@ public class Claw : MonoBehaviour
     float idleCounter = 0f;
     bool isAttacking = false;
     float movementCounter = 0f;
-    Transform transform;
+    // Transform transform;
     float startXPos;
 
     float stopMovingTime = 0f;
@@ -51,7 +51,7 @@ public class Claw : MonoBehaviour
     // Start is called before the \first frame update
     void Start()
     {
-        transform = GetComponent<Transform>();
+        // transform = GetComponent<Transform>();
         animator = GetComponent<Animator>();
     }
 
@@ -89,6 +89,8 @@ public class Claw : MonoBehaviour
         caughtPlayer = false;
         isAttacking = false;
         playerSaved = false;
+        Player player = Player.Instance;
+        resetMaxX(player.CurrentPanel);
     }
     // Update is called once per frame
     void Update()

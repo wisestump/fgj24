@@ -64,7 +64,9 @@ public class Movement : MonoBehaviour
 
     public void EnableJetpack() => jetpackActive = true;
     public void DisableJetpack() => jetpackActive = false;
-    
+    public void SetSwimming(bool value) => isSwimming = value;
+
+
     void SwapPositions(Transform t1, Transform t2)
     {
         var p1 = t1.position;
@@ -150,7 +152,7 @@ public class Movement : MonoBehaviour
         if (!coll.onWall || coll.onGround)
             wallSlide = false;
 
-        if (InputActions.Instance.IsJumpActive && !isSwimming)
+        if (InputActions.Instance.IsJumpHeld && !isSwimming)
         {
             //anim.SetTrigger("jump");
            

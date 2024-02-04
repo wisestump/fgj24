@@ -62,7 +62,7 @@ MonoBehaviour:
   PlayerAnimator: {fileID: 8403826263500646504}
   speed: 5
   jumpForce: 15
-  jetpackJumpForce: 40
+  jetpackJumpForce: 30
   swimmingJumpForce: 5
   slideSpeed: 5
   wallJumpLerp: 10
@@ -99,7 +99,7 @@ MonoBehaviour:
     m_Bits: 64
   slowLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   contactFilter:
     useTriggers: 0
     useLayerMask: 1

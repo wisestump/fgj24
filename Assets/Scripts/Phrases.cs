@@ -1,28 +1,27 @@
 ﻿using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
-class DialogRunner : MonoBehaviour
-{
-    public Phrases Phrases;
-
-    public void ShowDialogsFor(string zone)
-    {
-        var zoneP = Phrases.Parse()[zone];
-    }
-}
 
 class Phrases : MonoBehaviour
 {
-    Transform plushie = null;
+    public Transform plushie = null;
     public Transform claw = null;
-    Transform narrator = null;
+    public Transform narrator = null;
     Dictionary<string, List<Phrase>> pairs;
 
     private void Start()
     {
-        plushie = Player.Instance.transform;
-        narrator = Player.Instance.transform;
         pairs = Parse();
+    }
+
+    private void Update()
+    {
+        if(Player.Instance != null)
+        {
+            plushie = Player.Instance.transform;
+            narrator = Player.Instance.transform;
+        }
     }
 
 
@@ -34,129 +33,129 @@ class Phrases : MonoBehaviour
                 "PROLOGUE",
                 new List<Phrase>()
                 {
-                    new Phrase(0, narrator, "Plushie is one of the few remaining stuffed toys left in the Claw Cave.", 0.5f),
-                    new Phrase(1, narrator, "No one wants to leave a good friend hanging around. But one by one, Plushie's friends have clawed their way out.", 0.5f),
-                    new Phrase(2, narrator, "Plushie decides on a great escape.", 0.5f),
+                    new Phrase(0, narrator, "narrator", "Plushie is one of the few remaining stuffed toys left in the Claw Cave.", 0.9f),
+                    new Phrase(1, narrator, "narrator", "No one wants to leave a good friend hanging around. But one by one, Plushie's friends have clawed their way out.", 0.9f),
+                    new Phrase(2, narrator, "narrator", "Plushie decides on a great escape.", 0.9f),
                 }
             },
             {
                 "ARCADE",
                 new List<Phrase>()
                 {
-                    new Phrase(0, claw, "Stop moving and I'll claw you back into my arms.", 0.5f),
-                    new Phrase(1, plushie, "Watch me outpun you!", 0.5f),
+                    new Phrase(0, claw, "claw", "Stop moving and I'll claw you back into my arms.", 0.9f),
+                    new Phrase(1, plushie, "plushie", "Watch me outpun you!", 0.9f),
                 }
             },
             {
                 "SPACE 1",
                 new List<Phrase>()
                 {
-                    new Phrase(0, claw, "All suited up with no space to go.", 0.5f),
-                    new Phrase(1, plushie, "That's a one star pun, Claw. Now, get outer my space.", 0.5f),
+                    new Phrase(0, claw, "claw", "All suited up with no space to go.", 0.9f),
+                    new Phrase(1, plushie, "plushie", "That's a one star pun, Claw. Now, get outer my space.", 0.9f),
                 }
             },
             {
                 "SEWER 1",
                 new List<Phrase>()
                 {
-                    new Phrase(0, claw, "Ready for a poop joke?", 0.5f),
-                    new Phrase(1, plushie, "Nope, they stink", 0.5f),
+                    new Phrase(0, claw, "claw", "Ready for a poop joke?", 0.9f),
+                    new Phrase(1, plushie, "plushie", "Nope, they stink", 0.9f),
                 }
             },
             {
                 "SPACE 2",
                 new List<Phrase>()
                 {
-                    new Phrase(0, plushie, "These puns are pointing us in the right direction.", 0.5f),
-                    new Phrase(1, claw, "Do you want me to give you a hand?", 0.5f),
-                    new Phrase(2, plushie, "Not a meteor chance.", 0.5f),
+                    new Phrase(0, plushie, "plushie", "These puns are pointing us in the right direction.", 0.9f),
+                    new Phrase(1, claw, "claw", "Do you want me to give you a hand?", 0.9f),
+                    new Phrase(2, plushie, "plushie", "Not a meteor chance.", 0.9f),
                 }
             },
             {
                 "GROUND 1",
                 new List<Phrase>()
                 {
-                    new Phrase(0, claw, "Don't be a buzzkill, Plushie. Let's swat it out!", 0.5f),
-                    new Phrase(1, plushie, "Don't worry, I'm just here to wing it", 0.5f),
+                    new Phrase(0, claw, "claw", "Don't be a buzzkill, Plushie. Let's swat it out!", 0.9f),
+                    new Phrase(1, plushie, "plushie", "Don't worry, I'm just here to wing it", 0.9f),
                 }
             },
             {
                 "SEWER 2",
                 new List<Phrase>()
                 {
-                    new Phrase(0, claw, "Your fart knocked the wind out of me.", 0.5f),
-                    new Phrase(1, plushie, "Don't mind me. I'm just blowing off some steam", 0.5f),
-                    new Phrase(2, claw, "I'm flushed with embarrassment.", 0.5f),
+                    new Phrase(0, claw, "claw", "Your fart knocked the wind out of me.", 0.9f),
+                    new Phrase(1, plushie, "plushie", "Don't mind me. I'm just blowing off some steam", 0.9f),
+                    new Phrase(2, claw, "claw", "I'm flushed with embarrassment.", 0.9f),
                 }
             },
             {
                 "SPACE 3",
                 new List<Phrase>()
                 {
-                    new Phrase(0, claw, "I’m running out of space puns.", 0.5f),
-                    new Phrase(1, plushie, "Well, you need to planet better.", 0.5f),
+                    new Phrase(0, claw, "claw", "I’m running out of space puns.", 0.9f),
+                    new Phrase(1, plushie, "plushie", "Well, you need to planet better.", 0.9f),
                 }
             },
             {
                 "GROUND 2",
                 new List<Phrase>()
                 {
-                    new Phrase(0, claw, "You are not buzzworthy at all, Plushie", 0.5f),
-                    new Phrase(1, plushie, "That's because I bring it down to Earth... with a splat.", 0.5f),
+                    new Phrase(0, claw, "claw", "You are not buzzworthy at all, Plushie", 0.9f),
+                    new Phrase(1, plushie, "plushie", "That's because I bring it down to Earth... with a splat.", 0.9f),
                 }
             },
             {
                 "GROUND 3",
                 new List<Phrase>()
                 {
-                    new Phrase(0, plushie, "Oh dear, there is a lot of ground to cover", 0.5f),
-                    new Phrase(1, claw, "Don’t trust the stairs, they are always up to something!", 0.5f),
-                    new Phrase(2, plushie, "I'm not taking any chance for granite.", 0.5f),
+                    new Phrase(0, plushie, "plushie", "Oh dear, there is a lot of ground to cover", 0.9f),
+                    new Phrase(1, claw, "claw", "Don’t trust the stairs, they are always up to something!", 0.9f),
+                    new Phrase(2, plushie, "plushie", "I'm not taking any chance for granite.", 0.9f),
                 }
             },
             {
                 "SEWER 3",
                 new List<Phrase>()
                 {
-                    new Phrase(0, narrator, "missing", 0.5f),
-                    new Phrase(1, narrator, "missing", 0.5f),
+                    new Phrase(0, narrator, "Claw", "It's time to flush out the problem", 0.9f),
+                    new Phrase(1, narrator, "Plushie", "Don't be a party pooper.", 0.9f),
                 }
             },
             {
                 "ENDING 1",
                 new List<Phrase>()
                 {
-                    new Phrase(0, narrator, "Congratulations! You have won a Constellation prize.", 0.5f),
-                    new Phrase(1, narrator, "A one-way trip to the Black Hole.", 0.5f),
+                    new Phrase(0, narrator, "narrator", "Congratulations! You have won a Constellation prize.", 0.9f),
+                    new Phrase(1, narrator, "narrator", "A one-way trip to the Black Hole.", 0.9f),
                 }
             },
             {
                 "ENDING 2",
                 new List<Phrase>()
                 {
-                    new Phrase(0, narrator, "missing", 0.5f),
-                    new Phrase(1, narrator, "missing", 0.5f),
+                    new Phrase(0, narrator, "narrator", "Congratulations! You have landed on Comet Club.", 0.9f),
+                    new Phrase(1, narrator, "narrator", "It was a meteor-cre, down-to-earth experience.", 0.9f),
                 }
             },
             {
                 "ENDING 3",
                 new List<Phrase>()
                 {
-                    new Phrase(0, narrator, "Congratulations! You have arrived at Rock Bottom.", 0.5f),
-                    new Phrase(1, narrator, "It takes a boulder attitude to be here.", 0.5f),
+                    new Phrase(0, narrator, "narrator", "Congratulations! You have arrived at Rock Bottom.", 0.9f),
+                    new Phrase(1, narrator, "narrator", "It takes a boulder attitude to be here.", 0.9f),
                 }
             },
             {
                 "ENDING 4",
                 new List<Phrase>()
                 {
-                    new Phrase(0, narrator, "Congratulations! You are now a member of an elite group Sewer-side Squad that has reached the bottom of the Earth.", 0.5f),
-                    new Phrase(1, narrator, "It's a real “poop”ular spot.", 0.5f),
+                    new Phrase(0, narrator, "narrator", "Congratulations! You are now a member of an elite group Sewer-side Squad that has reached the bottom of the Earth.", 0.9f),
+                    new Phrase(1, narrator, "narrator", "It's a real “poop”ular spot.", 0.9f),
                 }
             },
             {
                 "GAME OVER",
-                new List<Phrase>() { new Phrase(0, claw, "I always claw my way to victory.", 0.5f), }
+                new List<Phrase>() { new Phrase(0, claw, "claw", "I always claw my way to victory.", 0.9f), }
             }
 
         };
