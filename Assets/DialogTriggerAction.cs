@@ -10,13 +10,16 @@ class DialogTriggerAction : ChoiceAction
 
     public void Reset(GameRestarter restarter)
     {
-        gameObject.SetActive(true);
+        enabled = true;
     }
 
     public override void Perform(Player player)
     {
+        if (enabled == false)
+            return;
+
         GameRestarter.Instance.OnRestartTriggered += Reset;
         dialogRunnger.ShowDialogsFor(name);
-        gameObject.SetActive(false);
+        enabled = false;
     }
 }
