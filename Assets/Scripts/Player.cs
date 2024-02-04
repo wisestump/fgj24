@@ -53,6 +53,7 @@ class Player : MonoBehaviour
     public void SetSwimming(bool value)
     {
         Movement.SetSwimming(value);
+        SetDivingMaskActive(value);
     }
 
     public void SetSpaceHelmetActive(bool value) => SpaceHelmet.SetActive(value);
@@ -63,6 +64,7 @@ class Player : MonoBehaviour
     
     public void DisableAllProps()
     {
+        SetSwimming(false);
         DisableJetpack();
         SetSpaceHelmetActive(false);
         SetDivingMaskActive(false);

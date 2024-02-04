@@ -52,4 +52,10 @@ class SoundManager : MonoBehaviour
     {
         Melody_Sewers.mute = false;
     }
+
+    public void Choise_3_GroundToSewers()
+    {
+        Melody_Ground.mute = true;
+        Melody_Sewers.mute = false;
+    }
 }
