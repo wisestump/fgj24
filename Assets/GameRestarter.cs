@@ -43,6 +43,7 @@ class GameRestarter : MonoBehaviour
         player.gameObject.GetComponent<Movement>().DisableJetpack();
         OnRestartTriggered?.Invoke(this);
         Claw.Instance.gameObject.SetActive(true);
+        Claw.Instance.Restart();
     }
 
     private void PerformActions(Player player)

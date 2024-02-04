@@ -152,7 +152,7 @@ public class Movement : MonoBehaviour
         if (!coll.onWall || coll.onGround)
             wallSlide = false;
 
-        if (InputActions.Instance.IsJumpActive && !isSwimming)
+        if (InputActions.Instance.IsJumpHeld && !isSwimming)
         {
             //anim.SetTrigger("jump");
            
