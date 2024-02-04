@@ -64,7 +64,9 @@ public class Movement : MonoBehaviour
 
     public void EnableJetpack() => jetpackActive = true;
     public void DisableJetpack() => jetpackActive = false;
-    
+    public void SetSwimming(bool value) => isSwimming = value;
+
+
     void SwapPositions(Transform t1, Transform t2)
     {
         var p1 = t1.position;

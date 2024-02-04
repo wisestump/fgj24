@@ -48,7 +48,11 @@ class Player : MonoBehaviour
     {
         Movement.DisableJetpack();
         Jetpack.gameObject.SetActive(false);
+    }
 
+    public void SetSwimming(bool value)
+    {
+        Movement.SetSwimming(value);
     }
 
     public void SetSpaceHelmetActive(bool value) => SpaceHelmet.SetActive(value);
