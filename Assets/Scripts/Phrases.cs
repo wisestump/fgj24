@@ -117,8 +117,8 @@ class Phrases : MonoBehaviour
                 "SEWER 3",
                 new List<Phrase>()
                 {
-                    new Phrase(0, narrator, "narrator", "missing", 0.9f),
-                    new Phrase(1, narrator, "narrator", "missing", 0.9f),
+                    new Phrase(0, narrator, "Claw", "It's time to flush out the problem", 0.9f),
+                    new Phrase(1, narrator, "Plushie", "Don't be a party pooper.", 0.9f),
                 }
             },
             {
@@ -133,8 +133,8 @@ class Phrases : MonoBehaviour
                 "ENDING 2",
                 new List<Phrase>()
                 {
-                    new Phrase(0, narrator, "narrator", "missing", 0.9f),
-                    new Phrase(1, narrator, "narrator", "missing", 0.9f),
+                    new Phrase(0, narrator, "narrator", "Congratulations! You have landed on Comet Club.", 0.9f),
+                    new Phrase(1, narrator, "narrator", "It was a meteor-cre, down-to-earth experience.", 0.9f),
                 }
             },
             {

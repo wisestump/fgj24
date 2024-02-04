@@ -6635,6 +6635,14 @@ PrefabInstance:
       propertyPath: m_PixelsPerUnitMultiplier
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5384825737860853054, guid: 0f02dcb75cb33c51690b987dcb810b72, type: 3}
+      propertyPath: m_fontSize
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 5384825737860853054, guid: 0f02dcb75cb33c51690b987dcb810b72, type: 3}
+      propertyPath: m_fontSizeMax
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 6624915833144175203, guid: 0f02dcb75cb33c51690b987dcb810b72, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1
@@ -6729,11 +6737,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7636050756987649030, guid: 0f02dcb75cb33c51690b987dcb810b72, type: 3}
       propertyPath: m_fontSize
-      value: 400
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 7636050756987649030, guid: 0f02dcb75cb33c51690b987dcb810b72, type: 3}
       propertyPath: m_fontSizeMax
-      value: 400
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 8067626028342726077, guid: 0f02dcb75cb33c51690b987dcb810b72, type: 3}
       propertyPath: m_SizeDelta.x
@@ -8615,6 +8623,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 687ccd8f10754cc4bae215488581fd4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DialogRunner: {fileID: 1561770514}
+  DialogLine: ENDING 1
 --- !u!114 &1912340583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9442,6 +9452,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 687ccd8f10754cc4bae215488581fd4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DialogRunner: {fileID: 1561770514}
+  DialogLine: ENDING 2
 --- !u!114 &2087351001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12184,6 +12196,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 687ccd8f10754cc4bae215488581fd4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DialogRunner: {fileID: 1561770514}
+  DialogLine: ENDING 2
 --- !u!4 &2381824712834046149
 Transform:
   m_ObjectHideFlags: 0
@@ -15695,6 +15709,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 687ccd8f10754cc4bae215488581fd4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DialogRunner: {fileID: 1561770514}
+  DialogLine: ENDING 4
 --- !u!114 &5474642898715041746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16225,6 +16241,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 687ccd8f10754cc4bae215488581fd4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DialogRunner: {fileID: 1561770514}
+  DialogLine: ENDING 3
 --- !u!114 &6147672280985412240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18772,6 +18790,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 687ccd8f10754cc4bae215488581fd4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DialogRunner: {fileID: 1561770514}
+  DialogLine: ENDING 3
 --- !u!114 &8329491587943033418
 MonoBehaviour:
   m_ObjectHideFlags: 0
