@@ -19,9 +19,9 @@ class CutsceneChoiceAction : ChoiceAction
         CameraFadeout.Instance.InstantBlackScreen();
         yield return new WaitForSeconds(1f);
         CameraFadeout.Instance.FadeOutOfBlack();
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(8f);
         DialogRunner.ShowDialogsFor(DialogLine);
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(6f);
         Endscreen.Instance.Show();
     }
 }
