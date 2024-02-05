@@ -41,7 +41,6 @@ class Player : MonoBehaviour
     {
         Movement.EnableJetpack();
         Jetpack.gameObject.SetActive(true);
-
     }
 
     public void DisableJetpack()

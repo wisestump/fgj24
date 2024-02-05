@@ -5,6 +5,7 @@
         Swatter, 
         FartCloud,
         Finger,
+        SpaceSuit,
     }
 
     public PropType Prop;
@@ -21,6 +22,9 @@
                 break;
             case PropType.Finger:
                 player.SetFoamFingerActive(true);
+                break;
+            case PropType.SpaceSuit:
+                player.SetSpaceHelmetActive(true);
                 break;
         }
     }
